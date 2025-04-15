@@ -1,0 +1,44 @@
+h2{
+    font-weight: bold;
+    font-size: 20px;
+    color: darkgrey;
+    text-align: center;
+}
+
+body{
+    background-color: whitesmoke;
+    color: rgb(0, 97, 146);
+    font-family: 'Times New Roman', Times, serif;
+    text-align: left;
+    border: 5px solid black;
+    margin: 50px;
+    padding: 50px;
+    text-align: left;
+
+}
+
+p{
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+    
+}
+
+a{
+    text-decoration: none;
+}
+
+.Title{
+    color: black;
+    text-align: center;
+}
+
+.TextWithImage{
+    text-decoration: underline;
+    text-decoration-color: black;
+
+}
+
+.bestDestination{
+    color: black;
+    text-align: center;
+}

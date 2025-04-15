@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Guesser</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background: #f0f4f8;
+      padding: 50px;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    input[type="number"] {
+      padding: 10px;
+      font-size: 16px;
+      width: 60px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background: #4caf50;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+
+    .result, .history {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+
+    .history {
+      text-align: left;
+      max-width: 400px;
+      margin: 30px auto;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+
+    .win {
+      color: green;
+      font-weight: bold;
+    }
+
+    .lose {
+      color: red;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>Number Guesser</h1>
+  <p>Guess a number between 1 and 10</p>
+  <input type="number" id="guessInput" min="1" max="10" />
+  <button onclick="checkGuess()">Guess</button>
+
+  <div class="result" id="result"></div>
+
+  <div class="history" id="history">
+    <h3>Guess History</h3>
+    <ul id="logList"></ul>
+  </div>
+
+  <script>
+    let justWon = false;
+
+    function getRandomNumber() {
+      return Math.floor(Math.random() * 10) + 1;
+    }
+
+    function checkGuess() {
+      const guessInput = document.getElementById('guessInput');
+      const resultDiv = document.getElementById('result');
+      const logList = document.getElementById('logList');
+
+      const userGuess = parseInt(guessInput.value);
+      if (isNaN(userGuess) || userGuess < 1 || userGuess > 10) {
+        resultDiv.innerHTML = '<span class="lose">Please enter a number between 1 and 10.</span>';
+        return;
+      }
+
+      // Clear history if last guess was a win
+      if (justWon) {
+        logList.innerHTML = '';
+        justWon = false;
+      }
+
+      const randomNumber = getRandomNumber();
+      const isWin = userGuess === randomNumber;
+
+      if (isWin) {
+        resultDiv.innerHTML = `<span class="win">You guessed it! 🎉 The number was ${randomNumber}.</span>`;
+        justWon = true;
+      } else {
+        resultDiv.innerHTML = `<span class="lose">Wrong guess. You chose ${userGuess}, but the number was ${randomNumber}.</span>`;
+        const listItem = document.createElement('li');
+        listItem.textContent = `You guessed: ${userGuess}, Computer picked: ${randomNumber} — Try again`;
+        logList.prepend(listItem);
+      }
+
+      guessInput.value = '';
+    }
+  </script>
+  <a href="Scratch.html">Sratch Page</a>
+  <br>
+  <a href="index.html">Home Page</a>
+</body>
+</html>
